@@ -6,7 +6,7 @@
 		<title>Edit Success</title>
 	</head>
 	<body style="background-color:#EFF5FB;">
-		<p>Success...Details Updated</p>
+		<h2 style="text-align:center">Details Successfully Edited...</h2> 
 			<div>	
 				<table style="text-align:center;margin-left:auto;margin-right:auto">
 					<tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th></tr>
