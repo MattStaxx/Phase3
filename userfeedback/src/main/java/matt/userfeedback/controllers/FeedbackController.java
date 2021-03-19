@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,16 +25,31 @@ public class FeedbackController {
 
 //  curl -X GET http://localhost:8090/feedback
 	@GetMapping("/feedback")
-	public @ResponseBody Iterable<Feedback> getAllFeedback() {
-        // This returns a JSON or XML with the users
+	public Iterable<Feedback> getAllFeedback() { 
+
+		logger.info("Getting feedback data...");
         return feedbackService.getAllFeedback();
     }
 
-	// curl -X POST localhost:8090/newFeedback -H "Content-type:application/json" -d "{\"comments\":\"Awesome\",\"rating\":10,\"user\":\"Tim\"}"
-	@PostMapping(value="/newFeedback", consumes={MediaType.APPLICATION_JSON_VALUE}) // method=RequestMethod.POST,
+	// curl -X POST localhost:8090/newFeedback -H "Content-type:application/json" -d "{\"comments\":\"Awesome\",\"rating\":10,\"user\":\"Tim\"}" 
+	@PostMapping(value="/newFeedback", consumes="application/json")
 	public Feedback postFeedback(@RequestBody Feedback feedback) {
-		
-		logger.info("Setting feedback data...");
+
+		logger.info("Setting feedback data json...");
 		return feedbackService.save(feedback);
 	}
+	
+	@PostMapping(value="/newFeedback")
+	public Feedback addFeedback(@RequestParam(value="comments") String comments, @RequestParam(value="rating") int rating, 
+								@RequestParam(value="user") String user) {
+		
+		Feedback fb = new Feedback();
+		fb.setComments(comments);
+		fb.setRating(rating);
+		fb.setUser(user);
+
+		logger.info("Setting feedback data text...");
+		return feedbackService.save(fb);
+	}
+	
 }
