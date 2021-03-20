@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<style>
+		h5 {
+			color:green;
+		}
+	</style>
 	</head>
-	<body>
-		<h2>Feedback Test Form</h2>
-			<form action="newFeedback" method='post'>
+	<body style="background-color:#EFF5FB;">
+		<h2 style="text-align:center">Feedback Test Form</h2>
+			<form action="newFeedback" method='post' onsubmit="required()">
 			
 			  <label for="comments">Comment:</label><br>
-			  <input type="text" id="comment" name="comments" ><br>
-			  
-			  <label for="rating">Rating:</label><br>
-			  <input type="number" id="name" name="rating" ><br>
+			  <input type="text" id="comment" placeholder="Comment Required" name="comments" required><br><br>
 			  
 			  <label for="user">Name:</label><br>
-			  <input type="text" id="name" name="user" ><br><br>
+			  <input type="text" id="name" placeholder="Name Required" name="user" required><br><br>
 			  
-			  <input type="submit" value="Submit" >
-			</form> 
+			  <select name="rating">
+				  <option>Select a Rating</option>
+				  <option value="1" style="color: black;">1</option>
+				  <option value="2" style="color: black;">2</option>
+				  <option value="3" style="color: black;">3</option>
+				  <option value="4" style="color: black;">4</option>
+				  <option value="5" style="color: black;">5</option>
+			 </select><br><br> 
+			  
+			  <input type="submit" value="Submit POST Request" >
+			</form><br>
+			<p>Note:<br>Included below are sample GET and POST commands that can be copy/pasted<br>into your command line or other tool...provided for your convenience!</p>
+			<h4>The 'curl' command to send a GET request to the controller is:</h4>
+			<h5>curl -X GET http://localhost:8090/feedback</h5><br>
+			<h4>The 'curl' command to send a POST request to the controller is:</h4>
+			<h5>curl -X POST localhost:8090/newFeedback -H "Content-type:application/json" -d "{\"comments\":\"Great service!\",\"rating\":10,\"user\":\"Edward\"}"</h5><br>
+			
+			<script src="non-empty.js"></script>
 	</body>
 </html>
