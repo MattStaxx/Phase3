@@ -42,7 +42,7 @@ public class AuthenticationTests {
     @Test
     public void whenGetPassword_thenReturnBoolean() {
 
-    	UserService uServ = new UserService();
+    	//UserService uServ = new UserService();
     	
         Users dummyUser = new Users();
         dummyUser.setName("Dummy");

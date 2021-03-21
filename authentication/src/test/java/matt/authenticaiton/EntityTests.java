@@ -35,9 +35,9 @@ public class EntityTests {
 		Users testUser = new Users();
 		testUser.setEmail("test@test.com");
 
-		String test = testUser.getName();
+		String test = testUser.getEmail();
 		
-		assertEquals(testUser.getEmail(), "test@test.com");
+		assertEquals(test, "test@test.com");
 	}
 
 //	@Test
@@ -55,9 +55,9 @@ public class EntityTests {
 		Users testUser = new Users();
 		testUser.setPassword("password");
 
-		String test = testUser.getName();
+		String test = testUser.getPassword();
 		
-		assertEquals(testUser.getPassword(), "password");
+		assertEquals(test, "password");
 	}
 
 //	@Test

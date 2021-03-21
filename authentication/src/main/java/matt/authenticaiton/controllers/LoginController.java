@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import matt.authenticaiton.services.UserService;
 
 
-
-
-
 @Controller
-// @RequestMapping("/") <-- try this
 public class LoginController {
 
 	@Autowired
@@ -34,24 +30,24 @@ public class LoginController {
     @GetMapping("/index")
     public String showLogin(ModelMap map) {
 		log.info("getting all users...");
-    	uServ.getAllUsers();
+    	//uServ.getAllUsers();
         return "loginform";
     }
 
     @RequestMapping(value="/loginform")
-//    @ResponseStatus(value=HttpStatus.OK)
     public String submitLogin(ModelMap m, @RequestParam String username, @RequestParam String password){
     	log.info("start login...");
-    	//TODO: if user returned to service class, allow access here, else deny
     	if(uServ.getPassword(username, password) == false) {
     		log.info("login denied...");
-    		return "denied";
+    		return "accessdenied";
     	} else
-    		log.info("login success...");
+		log.info("login success...");
+    	//m.addAttribute(username);
+		log.info("passing user name to view...");
         return "successful";
     }
     
-    @PostMapping("/denied")
+    @RequestMapping("/accessdenied")
     public String denied() {
     	
     	return "denied.html";
@@ -59,7 +55,7 @@ public class LoginController {
 
     @RequestMapping(value="/successful")
     public String success() {
-    	
+    	// https://stackoverflow.com/questions/7179787/html-page-throws-a-405-error-when-another-html-page-posts-a-form-to-it
     	return "success.html";
     }
 }
