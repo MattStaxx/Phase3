@@ -18,18 +18,7 @@ public class EntityTests {
 		
 		assertEquals(test, "bob");
 	}
-
-//	@Test
-//	public void WhenGetName_CheckName() {
-//		
-//		Users testUser = new Users();
-//		testUser.getName();
-//
-//		String test = testUser.setName("bob");
-//		
-//		assertEquals(test, "bob");
-//	}
-
+	
 	@Test
 	public void WhenSetEmail_CheckEmail() {
 		Users testUser = new Users();
@@ -40,16 +29,6 @@ public class EntityTests {
 		assertEquals(test, "test@test.com");
 	}
 
-//	@Test
-//	public void WhenGetEmail_CheckEmial() {
-//		Users testUser = new Users();
-//		testUser.getEmail();
-//
-//		String test = testUser.getName();
-//		
-//		assertEquals(testUser.setEmail("accct@gmail.com"), "accct@gmail.com");
-//	}
-
 	@Test
 	public void WhenSetPassword_CheckPassword() {
 		Users testUser = new Users();
@@ -59,14 +38,4 @@ public class EntityTests {
 		
 		assertEquals(test, "password");
 	}
-
-//	@Test
-//	public void WhenGetPassword_CheckPassword() {
-//		Users testUser = new Users();
-//		testUser.getPassword();
-//
-//		String test = testUser.getName();
-//		
-//		assertEquals(testUser.setPassword("mypassword"), "mypassword");
-//	}
 }

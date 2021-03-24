@@ -17,7 +17,7 @@ public class UserService {
 	Logger log = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
-	 private UserRepository userRepository;
+	private UserRepository userRepository;
 
     public Iterable<Users> GetAllUsers()
 		{

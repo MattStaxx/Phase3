@@ -32,7 +32,6 @@ public class LoginController {
     public String showLogin(ModelMap map) {
     	
 		log.info("getting all users...");
-    	//uServ.getAllUsers();
         return "loginform";
     }
 
@@ -61,13 +60,5 @@ public class LoginController {
 
     	return "success";
     }
-    
-    
-    /*
-     * 1 html pages can't receive POST requests, 
-     * 2 needed to add tomcat-jasper dependency to parse .jsp files into views
-     * 3 mapping from submitLogin() looks in webapp for the loginform.jsp, 
-     * while the other jsp's are located in the /WEB-INF/jsp folder --consider making everything in the webapp folder
-     */
 }
 
