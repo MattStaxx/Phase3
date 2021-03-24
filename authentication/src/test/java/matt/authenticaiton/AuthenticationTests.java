@@ -4,13 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import matt.authenticaiton.entities.Users;
 import matt.authenticaiton.repositories.UserRepository;
-import matt.authenticaiton.services.UserService;
 
-import org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
@@ -26,23 +23,41 @@ public class AuthenticationTests {
 
     @Test
     public void whenFindByName_thenReturnUser() {
-        // given
+
         Users dummyUser = new Users();
         dummyUser.setName("Dummy");
         dummyUser.setEmail("test@test.com");
         dummyUser.setPassword("password");
         entityManager.persist(dummyUser);
         entityManager.flush();
-        // when
+        
         Optional<Users> found = userRepository.findByName(dummyUser.getName());
-        // then
+        
         assertEquals(found.get(), dummyUser);
     }
     
     @Test
-    public void whenGetPassword_thenReturnBoolean() {
+    public void whenNameNotExists_thenThrowException() throws Exception {
+    	
+    	String exception = "Exception thrown...";
+    	Users dummyUser = new Users();
+        dummyUser.setName("Dummy");
+        dummyUser.setEmail("test@test.com");
+        dummyUser.setPassword("password");
+        entityManager.persist(dummyUser);
+        entityManager.flush();
+        
+        Optional<Users> searchingFor = userRepository.findByName("Mummy");
+        Optional<Users> notFound = userRepository.findByName("");
+        if(!searchingFor.isPresent()) {
+        	System.out.println(exception);
+        }
 
-    	//UserService uServ = new UserService();
+        assertEquals(searchingFor, notFound);
+    }
+    
+    @Test
+    public void whenGetPassword_thenReturnBoolean() {
     	
         Users dummyUser = new Users();
         dummyUser.setName("Dummy");

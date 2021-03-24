@@ -11,9 +11,6 @@ import matt.authenticaiton.entities.Users;
 import matt.authenticaiton.exceptions.UserNotFoundException;
 import matt.authenticaiton.repositories.UserRepository;
 
-
-
-
 @Service
 public class UserService {
 
@@ -22,18 +19,18 @@ public class UserService {
 	@Autowired
 	 private UserRepository userRepository;
 
-    public Iterable<Users> getAllUsers()
-    {
-        return userRepository.findAll();
-    }
-
-
+    public Iterable<Users> GetAllUsers()
+		{
+	        return userRepository.findAll();
+	    }
+    
     public Users getUserByName(String name) {
     	
     	Optional<Users> foundUser = userRepository.findByName(name);
     	log.info("searching for user...");
     	
     	if(!foundUser.isPresent()) {
+        	log.info("user not found...");
     		throw new UserNotFoundException();
     	}
 

@@ -11,7 +11,7 @@
 	<groupId>matt</groupId>
 	<artifactId>authentication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Authenticaiton</name>
+	<name>Authentication</name>
 	<description>Phase 3 Lesson 3 Project</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -25,7 +25,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-jasper</artifactId>
+		    <version>9.0.44</version>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

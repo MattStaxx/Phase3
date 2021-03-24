@@ -10,6 +10,10 @@ import matt.authenticaiton.controllers.LoginController;
 
 @SpringBootTest
 class AuthenticaitonApplicationTests {
+	
+	
+	void contextLoads() {}
+	
 //
 //	@LocalServerPort
 //	private int port;
