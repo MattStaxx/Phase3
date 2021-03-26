@@ -31,7 +31,7 @@ public class TheUserDetailsService implements UserDetailsService {
 	@Transactional
 	public UserDetails loadUserByUsername(String userName) {
 
-		log.info("loading userby name..." + userName);
+		log.info("loading user by name..." + userName);
 		Users user = userService.findUserByUserName(userName);
 		log.info("sending user to auth..." + user);
 		List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());

@@ -47,9 +47,10 @@ public class LoginController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		Users userExists = userService.findUserByUserName(user.getUserName());
+		log.info("creating new user......." + user.getUserName());
 		if(userExists != null) {
 			bindingResult
-					.rejectValue("name", "error.user", "That user name is already registered");
+					.rejectValue("userName", "error.user", "That user name is already registered");
 		}
 		if(bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");

@@ -33,25 +33,25 @@
 		                <div class="form-group">
 		                    <div class="col-sm-9">
 		                        <input type="text" th:field="*{email}" placeholder="Email"
-		                               class="form-control"/> <label
-		                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-		                            class="validation-message"></label>
+		                               class="form-control"/> 
+		                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+		                            	class="validation-message"></label>
 		                    </div>
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-sm-9">
 		                        <input type="text" th:field="*{userName}" placeholder="User Name"
-		                               class="form-control"/> <label
-		                            th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
-		                            class="validation-message"></label>
+		                               class="form-control"/> 
+		                        <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+		                            	class="validation-message"></label>
 		                    </div>
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-sm-9">
 		                        <input type="password" th:field="*{password}"
-		                               placeholder="Password" class="form-control"/> <label
-		                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-		                            class="validation-message"></label>
+		                               placeholder="Password" class="form-control"/> 
+		                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+		                            	class="validation-message"></label>
 		                    </div>
 		                </div>
 		
@@ -62,7 +62,6 @@
 		                </div>
 		
 		                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-		
 		            </form>
 		        </div>
 		    </div>

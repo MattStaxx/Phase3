@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 public class Users {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	
@@ -38,7 +38,7 @@ public class Users {
 	private boolean active;
 	
 	@ManyToMany(cascade=CascadeType.MERGE)
-	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="name"), inverseJoinColumns=@JoinColumn(name="role_id"))
+	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="role_id"))
 	private Set<Roles> role;
 	
 	public Integer getId() {
