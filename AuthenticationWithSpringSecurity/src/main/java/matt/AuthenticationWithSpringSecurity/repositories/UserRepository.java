@@ -8,6 +8,6 @@ import matt.AuthenticationWithSpringSecurity.entities.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-	Users findByEmail(String email);
-	Users findByUserName(String name);
+	Users findUserByEmail(String email);
+	Users findByUserName(String userName);
 }

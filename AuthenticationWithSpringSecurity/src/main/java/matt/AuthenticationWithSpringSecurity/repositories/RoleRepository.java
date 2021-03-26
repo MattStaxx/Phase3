@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import matt.AuthenticationWithSpringSecurity.entities.Roles;
 
+@Repository
 public interface RoleRepository extends JpaRepository<Roles, Integer> {
 
 	Roles findByRole(String role);

@@ -7,27 +7,31 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class Users {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Integer id;
 	
 	@Column(name="name")
-	@Length(min=5, message="Usesr name must contain at least 5 characters")
-	@NotEmpty(message="Enter a user name")
+	@NotEmpty(message="Enter your name")
 	private String name;
-	
+
 	@Column(name="email")
 	@Email(message="Enter a valid email")
 	@NotEmpty(message="Be sure to enter an email")
 	private String email;
-	
+
+    @Column(name="user_name")
+    @Length(min=5, message="*Your user name must have at least 5 characters")
+    @NotEmpty(message="*Please provide a user name")
+    private String userName;
+    
 	@Column(name="password")
 	@Length(min=5, message="Password must contain at least 5 characters")
-	@NotEmpty(message="Be sure to entaer a password")
+	@NotEmpty(message="Be sure to enter a password")
 	private String password;
 	
 	@Column(name="active")
@@ -58,6 +62,14 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
