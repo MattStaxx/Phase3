@@ -1,0 +1,61 @@
+package matt.TaskManagerApp.services;
+
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import matt.TaskManagerApp.entities.Users;
+import matt.TaskManagerApp.exceptions.UserNotFoundException;
+import matt.TaskManagerApp.repositories.UserRepository;
+
+@Service
+public class UserService {
+
+	Logger log = LoggerFactory.getLogger(UserService.class);
+	
+	@Autowired
+	private UserRepository userRepository;
+
+    public Iterable<Users> GetAllUsers()
+		{
+	        return userRepository.findAll();
+	    }
+    
+    public Users getUserByName(String name) {
+    	
+    	Optional<Users> foundUser = userRepository.findByName(name);
+    	log.info("searching for user...");
+    	
+    	if(!foundUser.isPresent()) {
+        	log.info("user not found...");
+    		throw new UserNotFoundException();
+    	}
+
+    	log.info("found user...");
+    	return (foundUser.get());
+    }
+    
+    public boolean getPassword(String username, String password) {
+    	
+    	boolean status = false;
+    	Users user = getUserByName(username);
+    	log.info("***" + user.getName() + "***");
+    	log.info("***" + user.getPassword() + "***");
+    	if(user.getPassword().equals(password)) {
+        	log.info("password match...");
+    		status = true;
+    	} else {
+        	log.info("no password match..."); 
+    		status = false;
+    	}
+    	return status;
+    }
+    
+    public Users save(Users user) {
+    	
+    	return userRepository.save(user);
+    }
+}
