@@ -52,17 +52,17 @@ public class LoginController {
     	} else {
 			log.info("login success...");
 	    	m.addAttribute("user", username);
-			log.info("passing user name to view...");
+			log.info("passing user name to view..." + username);
     	}
-        	return "success";
+        	return "taskform";
     }
     
     @RequestMapping(value="/register")
-    public String registerUser(ModelMap m, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
+    public String registerUser(ModelMap m, @RequestParam String username, @RequestParam String email, @RequestParam String password) {
 		
     	log.info("Start user registration...");
     	Users user = new Users();
-    	user.setName(name);
+    	user.setName(username);
     	user.setEmail(email);
     	user.setPassword(password);
     	uServ.save(user);
@@ -83,19 +83,23 @@ public class LoginController {
     }
     
     @RequestMapping(value="/manage")
-    public Tasks addTask(ModelMap m, @RequestParam String name, @RequestParam Date start, @RequestParam Date end,
-    								 @RequestParam String des, @RequestParam String sev, @RequestParam Users user) {
+    public String addTask(ModelMap m, @RequestParam String name, @RequestParam Date start, @RequestParam Date end,
+    								 @RequestParam String desc, @RequestParam String sev, @RequestParam String username) {
 
-    	log.info("start add tasks...");
+    	log.info("start add tasks..." + username);
+    	Users user = uServ.getUserByName(username);
     	Tasks task = new Tasks();
     	task.setName(name);
     	task.setStart(start);
     	task.setEnd(end);
-    	task.setDesc(des);
+    	task.setDesc(desc);
     	task.setSeverity(sev);
     	task.setUser(user);  // import a hidden user object to the form to link to the logged in user
-    	m.addAttribute(task);
-		return tServ.save(task);
+    	m.addAttribute("task", task);
+    	m.addAttribute("user", username);
+    	tServ.save(task);
+    	
+		return "tasklist";
     }
 
     

@@ -6,7 +6,8 @@
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
 	</head>
-	<body>
+	<body style="background-color:#EFF5FB;">
+		<h2 style="text-align:center">Home Page</h2>
 		<a href="loginform.jsp">Login</a><br>
 		<a href="registerform.jsp">Register</a>
 	
