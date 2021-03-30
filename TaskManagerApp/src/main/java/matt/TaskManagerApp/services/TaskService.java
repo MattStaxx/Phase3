@@ -12,7 +12,6 @@ import matt.TaskManagerApp.repositories.TaskRepository;
 
 
 @Service
-//@Transactional
 public class TaskService {
 
 	Logger log = LoggerFactory.getLogger(TaskService.class);
@@ -20,26 +19,44 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 
-//	@Autowired
     public Iterable<Tasks> getAllTasks()
-		{
-	        return taskRepository.findAll();
-	    }
-//    @Autowired
-	public Tasks getTaskbyName(String taskname) {
+	{
+        return taskRepository.findAll();
+    }
+
+	public Tasks getTaskByName(String taskname) {
 		
 		return taskRepository.findByName(taskname);
 	}
 	
-//	@Autowired
 	public Iterable<Tasks> getTasksByUserId(Users user) {
 		
 		return (taskRepository.findAllByUser(user));
 	}
 	
-//	@Autowired
+	@Transactional
 	public Tasks save(Tasks task) {
 		
 		return taskRepository.save(task);
+	}
+	
+	@Transactional
+	public void save(Tasks task, String taskName) {
+
+		Tasks t = getTaskByName(taskName);
+		log.info("updating task with id #..." + t.getId());
+		if(taskRepository.existsById(t.getId())) {
+			task.setId(t.getId());
+			taskRepository.save(task);
+		} else {
+			taskRepository.save(task);
+		}
+	}
+	
+	@Transactional
+	public String deleteByName(String taskname) {
+		
+		taskRepository.deleteByName(taskname);
+		return "Delete sccuessful";
 	}
 }

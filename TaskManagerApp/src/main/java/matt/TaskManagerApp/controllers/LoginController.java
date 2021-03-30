@@ -22,18 +22,8 @@ public class LoginController {
 
 	@Autowired
 	UserService uServ;
-	@Autowired
-	TaskService tServ;
 	
 	Logger log = LoggerFactory.getLogger(LoginController.class);
-	
-
-//    @GetMapping("/")
-//    public String showGreeting() {
-//    	
-//    	log.info("Starting app...");
-//        return "index";
-//    }
 
     @GetMapping(value="/")
     public String showLogin() {
@@ -69,38 +59,4 @@ public class LoginController {
     	m.addAttribute("user", user);
     	return "registersuccess";
     }
-    
-    @RequestMapping("/accessdenied")
-    public String denied() {
-    	
-    	return "denied";
-    }
-
-    @RequestMapping(value="/success")
-    public String success() {
-
-    	return "managetask";
-    }
-    
-    @RequestMapping(value="/manage")
-    public String addTask(ModelMap m, @RequestParam String name, @RequestParam Date start, @RequestParam Date end,
-    								 @RequestParam String desc, @RequestParam String sev, @RequestParam String username) {
-
-    	log.info("start add tasks..." + username);
-    	Users user = uServ.getUserByName(username);
-    	Tasks task = new Tasks();
-    	task.setName(name);
-    	task.setStart(start);
-    	task.setEnd(end);
-    	task.setDesc(desc);
-    	task.setSeverity(sev);
-    	task.setUser(user);  // import a hidden user object to the form to link to the logged in user
-    	m.addAttribute("task", task);
-    	m.addAttribute("user", username);
-    	tServ.save(task);
-    	
-		return "tasklist";
-    }
-
-    
 }

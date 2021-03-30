@@ -11,7 +11,7 @@
 	<body style="background-color:#EFF5FB;">
 		<h2 style="text-align:center">Login Page</h2>
 		<form style="text-align:center" action="manage" method="post">
-		
+			
 			<label for="name">Task Name:</label>
 			<input type="text" id="name" name="name" required>
 			
@@ -24,11 +24,18 @@
 			<label for="desc">Task Description:</label>
 			<input type="text" id="desc" name="desc" required>
 			
-			<label for="sev">Severity</label>
+			<label for="sev">Severity:</label>
 			<select id="sev" name="sev">
 				<option value="high">High</option>
 				<option value="med">Medium</option>
 				<option value="low">Low</option>
+			</select>
+			
+			<label for="act">Action:</label>
+			<select id="act" name="act">
+				<option value="create">Create</option>
+				<option value="update">Update</option>
+				<option value="delete">Delete</option>
 			</select>
 			
 			<label for="username">User:</label>
