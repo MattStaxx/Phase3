@@ -12,6 +12,5 @@
 		session.invalidate();
 		response.sendRedirect("/home");
 		%>
-	
 	</body>
 </html>

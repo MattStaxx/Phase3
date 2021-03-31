@@ -20,6 +20,10 @@ import matt.TaskManagerApp.services.UserService;
 @Controller
 public class LoginController {
 
+
+	@Autowired
+	TaskService tServ;
+	
 	@Autowired
 	UserService uServ;
 	
@@ -28,31 +32,35 @@ public class LoginController {
     @GetMapping(value="/")
     public String showLogin() {
     	
-		log.info("going to home...");
-        return "home";
+		log.info("going to index...");
+        return "index";
     }
 
     @RequestMapping(value="/loginform")
-    public String submitLogin(ModelMap m, @RequestParam String username, @RequestParam String password){
+    public String submitLogin(ModelMap m, @RequestParam String userName, @RequestParam String password){
     	
     	log.info("start login...");
-    	if(uServ.getPassword(username, password) == false) {
+    	if(uServ.getPassword(userName, password) == false) {
     		log.info("login denied...");
     		return "denied";
     	} else {
 			log.info("login success...");
-	    	m.addAttribute("user", username);
-			log.info("passing user name to view..." + username);
+	    	m.addAttribute("user", userName);
+			log.info("passing user name to view..." + userName);
     	}
-        	return "taskform";
+    	m.addAttribute("userName", userName);
+    	return "home";
+//    	Iterable<Tasks> allTasks = tServ.getAllTasks();
+//    	m.addAttribute("list", allTasks);
+//    	return "taskform";
     }
     
     @RequestMapping(value="/register")
-    public String registerUser(ModelMap m, @RequestParam String username, @RequestParam String email, @RequestParam String password) {
+    public String registerUser(ModelMap m, @RequestParam String userName, @RequestParam String email, @RequestParam String password) {
 		
     	log.info("Start user registration...");
     	Users user = new Users();
-    	user.setName(username);
+    	user.setName(userName);
     	user.setEmail(email);
     	user.setPassword(password);
     	uServ.save(user);

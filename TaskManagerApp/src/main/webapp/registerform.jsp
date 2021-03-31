@@ -12,7 +12,7 @@
 			<form style="text-align:center" action="/register" method='post'>
 			
 				<label for="username">Name:</label><br>
-			  	<input type="text" id="username" placeholder="Name Required" name="username" required><br><br>
+			  	<input type="text" id="userName" placeholder="Name Required" name="userName" required><br><br>
 			  	
 				<label for="email">Email:</label><br>
 			  	<input type="text" id="email" placeholder="Email Required" name="email" required><br><br>

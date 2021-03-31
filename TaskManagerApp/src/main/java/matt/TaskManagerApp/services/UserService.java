@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import matt.TaskManagerApp.entities.Users;
+import matt.TaskManagerApp.exceptions.UserNameAlreadyExistsException;
 import matt.TaskManagerApp.exceptions.UserNotFoundException;
 import matt.TaskManagerApp.repositories.UserRepository;
 
@@ -19,14 +20,14 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-    public Iterable<Users> GetAllUsers()
-		{
+    	public Iterable<Users> getAllUsers() {
+    		
 	        return userRepository.findAll();
 	    }
     
-    public Users getUserByName(String name) {
+    public Users getUserByName(String userName) {
     	
-    	Optional<Users> foundUser = userRepository.findByName(name);
+    	Optional<Users> foundUser = userRepository.findByName(userName);
     	log.info("searching for user...");
     	
     	if(!foundUser.isPresent()) {
@@ -38,10 +39,10 @@ public class UserService {
     	return (foundUser.get());
     }
     
-    public boolean getPassword(String username, String password) {
+    public boolean getPassword(String userName, String password) {
     	
     	boolean status = false;
-    	Users user = getUserByName(username);
+    	Users user = getUserByName(userName);
     	log.info("***" + user.getName() + "***");
     	log.info("***" + user.getPassword() + "***");
     	if(user.getPassword().equals(password)) {
@@ -54,8 +55,15 @@ public class UserService {
     	return status;
     }
     
-    public Users save(Users user) {
+    public Users save(Users user, String userName) {
     	
-    	return userRepository.save(user);
+    	if(getAllUsers() == null) {
+        	return userRepository.save(user);
+    	} else if(getUserByName(userName) != null) {
+    		throw new UserNameAlreadyExistsException();
+    	} else {
+    		return userRepository.save(user);
+    	}
+    	
     }
 }

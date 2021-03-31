@@ -10,7 +10,7 @@ import matt.TaskManagerApp.entities.Users;
 public interface TaskRepository extends CrudRepository<Tasks, Integer> {
 
 	public Tasks findByName(String name);
-	public Iterable<Tasks> findAllByUser(Users user);
+	public Iterable<Tasks> findAllTasksByUser(Users user);
 	public Tasks save(String name);
 	public Integer deleteByName(String name);
 }

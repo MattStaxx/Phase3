@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import matt.TaskManagerApp.entities.Tasks;
 import matt.TaskManagerApp.entities.Users;
+import matt.TaskManagerApp.exceptions.TaskNotFoundException;
 import matt.TaskManagerApp.repositories.TaskRepository;
 
 
@@ -19,9 +20,9 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 
-    public Iterable<Tasks> getAllTasks()
+    public Iterable<Tasks> findAllTasksByUser(Users user)
 	{
-        return taskRepository.findAll();
+        return taskRepository.findAllTasksByUser(user);
     }
 
 	public Tasks getTaskByName(String taskname) {
@@ -29,19 +30,18 @@ public class TaskService {
 		return taskRepository.findByName(taskname);
 	}
 	
-	public Iterable<Tasks> getTasksByUserId(Users user) {
-		
-		return (taskRepository.findAllByUser(user));
-	}
-	
-	@Transactional
-	public Tasks save(Tasks task) {
-		
-		return taskRepository.save(task);
-	}
-	
 	@Transactional
 	public void save(Tasks task, String taskName) {
+		
+		if(taskRepository.findByName(taskName) != null) {
+			update(task, taskName);
+		} else {
+			taskRepository.save(task);
+		}
+	}
+	
+	@Transactional
+	public void update(Tasks task, String taskName) {
 
 		Tasks t = getTaskByName(taskName);
 		log.info("updating task with id #..." + t.getId());
@@ -54,9 +54,11 @@ public class TaskService {
 	}
 	
 	@Transactional
-	public String deleteByName(String taskname) {
-		
-		taskRepository.deleteByName(taskname);
+	public String deleteByName(Users user, String taskname) {
+
+		if(findAllTasksByUser(user) == null) {
+			throw new TaskNotFoundException();
+		} else taskRepository.deleteByName(taskname);
 		return "Delete sccuessful";
 	}
 }
