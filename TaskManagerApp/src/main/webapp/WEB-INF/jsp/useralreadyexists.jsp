@@ -8,6 +8,7 @@
 	</head>
 	<body style="background-color:#EFF5FB;">
 			<h2 style="text-align:center">User Already Exists</h2><br><br>
-			<p style="text-align:center"><a href="loginform.jsp">Back to Login</a></p>
+		   <p style="text-align:center"><a href="/">Back to Main Menu</a></p>
+			<p style="text-align:center"><a href="loginform.jsp">Proceed to Login</a></p>
 	</body>
 </html>

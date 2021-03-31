@@ -8,6 +8,7 @@
 	</head>
 	<body style="background-color:#EFF5FB;">
 			<h2 style="text-align:center">Task Not Found</h2><br><br>
-			<p style="text-align:center"><a href="loginform.jsp">Back to Login</a></p>
+			<p style="text-align:center"><a href="loginform.jsp">Back to Login</a></p><br>
+			<p style="text-align:center"><a href="/">Exit Task Manager</a></p>
 	</body>
 </html>

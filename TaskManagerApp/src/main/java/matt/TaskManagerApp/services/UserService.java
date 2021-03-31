@@ -57,13 +57,11 @@ public class UserService {
     
     public Users save(Users user, String userName) {
     	
-    	if(getAllUsers() == null) {
-        	return userRepository.save(user);
-    	} else if(getUserByName(userName) != null) {
+    	Optional<Users> u = userRepository.findByName(userName);
+    	if(u.isPresent()) {
     		throw new UserNameAlreadyExistsException();
     	} else {
     		return userRepository.save(user);
     	}
-    	
     }
 }

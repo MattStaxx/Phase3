@@ -1,7 +1,5 @@
 package matt.TaskManagerApp.controllers;
 
-import java.sql.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import matt.TaskManagerApp.entities.Tasks;
 import matt.TaskManagerApp.entities.Users;
 import matt.TaskManagerApp.services.TaskService;
 import matt.TaskManagerApp.services.UserService;
@@ -50,9 +47,6 @@ public class LoginController {
     	}
     	m.addAttribute("userName", userName);
     	return "home";
-//    	Iterable<Tasks> allTasks = tServ.getAllTasks();
-//    	m.addAttribute("list", allTasks);
-//    	return "taskform";
     }
     
     @RequestMapping(value="/register")
@@ -63,7 +57,7 @@ public class LoginController {
     	user.setName(userName);
     	user.setEmail(email);
     	user.setPassword(password);
-    	uServ.save(user);
+    	uServ.save(user, userName);
     	m.addAttribute("user", user);
     	return "registersuccess";
     }

@@ -13,11 +13,11 @@
 			
 			<input type="hidden" name="userName" value="${userName}" required><br>
 			
-			<label for="desc">Task Description:</label>
-			<input type="text" id="desc" name="desc" required><br>
-			
 			<label for="name">Task Name:</label>
 			<input type="text" id="name" name="name" required><br>
+			
+			<label for="desc">Task Description:</label>
+			<input type="text" id="desc" name="desc" required><br>
 			
 			<label for="start">Start Date:</label>
 			<input type="date" id="start" name="start" required><br>
